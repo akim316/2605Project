@@ -1,7 +1,6 @@
 from numpy.linalg import *
 from numpy import *
-i = matrix([[3],[4]])
-j = matrix([[3, 4]])
+mat = matrix([[1,2,0],[-2,1,2],[1,3,1]])
 
 def matrixMult(A,B):
     D = zeros((A.shape[0],B.shape[1]))
@@ -11,7 +10,7 @@ def matrixMult(A,B):
             rightCols = B[:,y]
             c = dot(leftRows, rightCols)
             D[x,y] = c
-    print D
+    return D
 def LUfact():
     print ("LU factor")
 def QRfact():
@@ -20,9 +19,22 @@ def determinant():
     print("determinant")
 def trace():
     print("trace")
-def eigenVals():
-    print("eigenvals")
-def eigenVect():
-    print("eigenvects")
+def power_method(A, tol, initEig):
+    vals = power_method_calculations(A, tol, initEig, 0)
+    return vals
+def solve_lu_b():
+    for 
+def power_method_calculations(A, tol, initEig, iters):
+    ## Ax0
+    result = matrixMult(A, initEig)
+    ## x1
+    nextEig = result / max(result)
+    calcTol = norm(nextEig) - norm(initEig)
+    calcTol = abs(calcTol)
+    if calcTol > tol:
+        iters += 1
+        return power_method_calculations(A, tol, nextEig, iters)
+    else:
+        return iters, norm(max(result)), nextEig
 
-matrixMult(i,j)
+print power_method(mat, 0.00001, matrix([[2],[2],[2]]))
