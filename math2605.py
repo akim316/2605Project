@@ -11,6 +11,14 @@ def matrixMult(A,B):
             c = dot(leftRows, rightCols)
             D[x,y] = c
     return D
+
+def mag(aVector):
+    sum = 0
+    for element in aVector[0]:
+        sum += element**2
+    mag = sum**(1.0/2)
+    return mag
+
 def LUfact():
     print ("LU factor")
 def QRfact():
