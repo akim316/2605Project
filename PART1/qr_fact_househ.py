@@ -1,26 +1,8 @@
 from numpy import *
-
+from math2605 import *
 A = matrix([[1.,0.5,0.333333,0.25],[0.5,0.333333,0.25,0.2],[0.333333,0.25,0.2,0.166667],[0.25,0.2,0.166667,0.142857]], dtype='f')
 B = matrix([[12,-51,4],[6,167,-68], [-4,24,-41]])
 copyA = copy(A)
-
-def matrixMult(A,B):
-    D = zeros((A.shape[0],B.shape[1]))
-    for x in range(A.shape[0]):
-        for y in range(B.shape[1]):
-            leftRows = A[x,:]
-            rightCols = B[:,y]
-            c = dot(leftRows, rightCols)
-            D[x,y] = c
-    return D
-
-def mag(aVector):
-	sum = 0
-	for element in aVector[0]:
-		sum += element**2
-	mag = sum**(1.0/2)
-	return mag
-
 count = 0
 hList = []
 print copyA
@@ -38,7 +20,7 @@ for num in range(copyA.shape[1]):
 	 	#print "uT=", uT
 	 	u = uT[0][newaxis, :].T
 	 	#print "u=" , u
-	  	H = eye(v.shape[1]) - 2*matrixMult(u,uT)
+                H = eye(v.shape[1]) - 2*matrixMult(u,uT)
 	  	#print "previous H =",H
 	  	if H.shape[0] != A.shape[0]:
 	  		identity = eye(A.shape[0])

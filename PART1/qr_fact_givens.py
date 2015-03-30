@@ -1,15 +1,5 @@
 from numpy import *
-
-def matrixMult(A,B):
-    D = zeros((A.shape[0],B.shape[1]))
-    for x in range(A.shape[0]):
-        for y in range(B.shape[1]):
-            leftRows = A[x,:]
-            rightCols = B[:,y]
-            c = dot(leftRows, rightCols)
-            D[x,y] = c
-    return D
-
+from math2605 import *
 A = matrix([[1.,0.5,0.333333,0.25],[0.5,0.333333,0.25,0.2],[0.333333,0.25,0.2,0.166667],[0.25,0.2,0.166667,0.142857]], dtype='f')
 copyA = copy(A)
 

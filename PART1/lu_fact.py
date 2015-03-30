@@ -1,15 +1,5 @@
 from numpy import *
-import math2605 as LU
-def matrixMult(A,B):
-    D = zeros((A.shape[0],B.shape[1]))
-    for x in range(A.shape[0]):
-        for y in range(B.shape[1]):
-            leftRows = A[x,:]
-            rightCols = B[:,y]
-            c = dot(leftRows, rightCols)
-            D[x,y] = c
-    return D
-
+from math2605 import *
 originalA = matrix([[1.,0.5,0.333333,0.25],[0.5,0.333333,0.25,0.2],[0.333333,0.25,0.2,0.166667],[0.25,0.2,0.166667,0.142857]], dtype='f')
 B = matrix([[2,-1,1], [3,3,9], [3,3,5]], dtype='f')
 C = matrix([[2,1,1], [4,-6,0], [-2,7,2]], dtype='f')
@@ -68,4 +58,4 @@ print "max =", maximum
 
 b = matrix([[0.0464159],[0.0464159],[0.0464159],[0.0464159]])
 
-print LU.solve_lu_b(L, U, b)
+print solve_lu_b(L, U, b)
