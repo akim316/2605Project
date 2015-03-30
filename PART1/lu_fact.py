@@ -1,5 +1,5 @@
 from numpy import *
-
+import math2605 as LU
 def matrixMult(A,B):
     D = zeros((A.shape[0],B.shape[1]))
     for x in range(A.shape[0]):
@@ -65,3 +65,7 @@ for y in range(errorMatrix.shape[0]):
         if abs(errorMatrix[x,y]) > maximum:
             maximum = abs(errorMatrix[x,y])
 print "max =", maximum
+
+b = matrix([[0.0464159],[0.0464159],[0.0464159],[0.0464159]])
+
+print LU.solve_lu_b(L, U, b)
