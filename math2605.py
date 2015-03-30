@@ -1,6 +1,7 @@
 from numpy.linalg import *
 from numpy import *
-mat = matrix([[1,2,0],[-2,1,2],[1,3,1]])
+mat = matrix([[1,1,-2]])
+B = matrix([[1],[1],[-2]])
 
 def matrixMult(A,B):
     D = zeros((A.shape[0],B.shape[1]))
@@ -11,7 +12,7 @@ def matrixMult(A,B):
             c = dot(leftRows, rightCols)
             D[x,y] = c
     return D
-
+print matrixMult(B,mat)
 def mag(aVector):
     sum = 0
     for element in aVector[0]:
@@ -30,8 +31,8 @@ def trace():
 def power_method(A, tol, initEig):
     vals = power_method_calculations(A, tol, initEig, 0)
     return vals
-def solve_lu_b():
-    for 
+def solve_lu_b(): 
+    print "hi"
 def power_method_calculations(A, tol, initEig, iters):
     ## Ax0
     result = matrixMult(A, initEig)
