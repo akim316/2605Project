@@ -1,3 +1,4 @@
+from numpy import *
 import math2605 as math
 import lu_fact as LU
 import qr_fact_househ as hh
@@ -57,11 +58,13 @@ if input1 == 1:
             print "Givens x sol =", gx
             print "Givens sol error =", ghxerror
             print "================== END OF " + str(n) + " x " + str(n) + " MATRIX CALCULATIONS =================="
-    if input11 == 3:
-        fileInput = str(input("Enter filename with matrix values"))
-        mat, useless = test.readingDAT(fileInput)
-        tolerance = int(input("Enter the error tolerance"))
-        initEig = zeros((mat.shape[0], 1))
-        for i in range(mat.shape[0]):
-            initEig[i,0] = 1
-        print power_method(mat, tolerance, initEig)
+if input1 == 3:
+    fileInput = str(input("Enter filename with matrix values: "))
+    mat = test.readingMatrixDAT(fileInput)
+    tolerance = int(input("Enter the error tolerance: "))
+    initEig = zeros((mat.shape[0], 1))
+    for i in range(mat.shape[0]):
+        initEig[i,0] = 1
+    iters, maxEig = pm.power_method(mat, tolerance, initEig)
+    print "Iterations: " + str(iters)
+    print "Max eigenvalue: " + str(maxEig)
