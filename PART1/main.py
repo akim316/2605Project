@@ -2,7 +2,9 @@ import math2605 as math
 import lu_fact as LU
 import qr_fact_househ as hh
 import qr_fact_givens as g
-print "Welcome to the 2605 Project by Min Je Jung, William Su, and fucker."
+import power_method as pm
+import testing as test
+print "Welcome to the 2605 Project by Min Je Jung, William Su, and Alex Kim."
 input1 = int(input("Enter a part: 1, 2, or 3\n"))
 if input1 == 1:
     print "Choose an option."
@@ -55,4 +57,11 @@ if input1 == 1:
             print "Givens x sol =", gx
             print "Givens sol error =", ghxerror
             print "================== END OF " + str(n) + " x " + str(n) + " MATRIX CALCULATIONS =================="
-
+    if input11 == 3:
+        fileInput = str(input("Enter filename with matrix values"))
+        mat, useless = test.readingDAT(fileInput)
+        tolerance = int(input("Enter the error tolerance"))
+        initEig = zeros((mat.shape[0], 1))
+        for i in range(mat.shape[0]):
+            initEig[i,0] = 1
+        print power_method(mat, tolerance, initEig)
