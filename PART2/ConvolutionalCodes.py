@@ -1,4 +1,8 @@
 from numpy import *
+import Determinant as dt
+import Inverse as inv
+import Inverse2 as inv2
+
 import random
 
 ## matrix multiplication modified for binary use
@@ -9,7 +13,7 @@ def matrixMult(A,B):
             leftRows = A[x,:]
             rightCols = B[:,y]
             c = dot(leftRows, rightCols)
-            D[x,y] = c % 2 # modified region
+            D[x,y] = abs(c % 2) # modified region
     return D
 
 n = int(raw_input("\nDesired length of x\n")) # takes in the desired length of n
@@ -79,17 +83,114 @@ for i in range(y1.shape[0]):
     y.append(j0 + j1)
 
 ## outputs y
+print "\ny ="
 print y
+
+##############################################################################################################
+##
+## jacobi iteration
+##
+##############################################################################################################
+
+## create D0, U0, and L0 matrices
+D0 = zeros((A0.shape[0], A0.shape[1]))
+L0 = zeros((A0.shape[0], A0.shape[1]))
+U0 = zeros((A0.shape[0], A0.shape[1]))
+
+## fills in D0 matrix
+for i in range(A0.shape[0]):
+    for j in range(A0.shape[1]):
+        if i == j:
+            D0[i, j] = A0[i, j]
+        elif i < j:
+            U0[i, j] = A0[i, j]
+        else:
+            L0[i, j] = A0[i, j]
+ 
+## outputs D0, U0, and L0
+print "\nD0 ="
+print D0
+print "\nU0 ="
+print U0
+print "\nL0 ="
+print L0
+
+x0j_k = zeros((A0.shape[0], 1))
+b0j = y0
+
+for i in range(n):
+    print "\nIteration: %d:" % (i + 1)
+    x0j_k = (matrixMult(-1 * (L0), x0j_k) + b0j) % 2
+    print x0j_k
+
+print "\nx0_k from iteration ="
+print x0j_k
+
+print "x0j_real"
+print matrixMult(inv2.inverse(A0), b0j) 
+"""
+## create D1, U1, and L1 matrices
+D1 = zeros((A1.shape[0], A1.shape[1]))
+L1 = zeros((A1.shape[0], A1.shape[1]))
+U1 = zeros((A1.shape[0], A1.shape[1]))
+
+## fills in D0 matrix
+for i in range(A1.shape[0]):
+    for j in range(A1.shape[1]):
+        if i == j:
+            D1[i, j] = A1[i, j]
+        elif i < j:
+            U1[i, j] = A1[i, j]
+        else:
+            L1[i, j] = A1[i, j]
+    
+## outputs D1, U1, and L1
+print "\nD1 ="
+print D1
+print "\nU1 ="
+print U1
+print "\nL1 ="
+print L1
+
+x1j_k = zeros((A1.shape[0], 1))
+b1j = y1
+
+for i in range(n):
+    print "\nIteration: %d:" % (i + 1)
+    x1j_k = (matrixMult(-1 * (L1), x1j_k) + b1j) % 2
+    print x1j_k
+
+print "\nx1_k from iteration ="
+print x1j_k
+
+print "GG"
+## Gauss Seidol
+
+x0g_k = zeros((A0.shape[0], 1))
+b0g = y0
+
+print matrixMult(inv.inverse(L0 + D0), b0g)
+for i in range(n):
+    print "\nIteration: %d:" % (i + 1)
+    x0j_k = matrixMult(inv2.inverse(L0 + D0), b0g)
+    ##print x0j_k
+"""
+
+
+
+
+
 
 ##############################################################################################################
 ##
 ## testing x from project description
 ##
 ##############################################################################################################
-
+"""
 x0 = matrix([[1],[0],[1],[1],[0],[0],[0],[0]])
 print "\nThis is the test case from the project description"
 print "\ny0 ="
 print matrixMult(A0, x0)
 print "\ny1 ="
 print matrixMult(A1, x0)
+"""

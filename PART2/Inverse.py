@@ -30,6 +30,3 @@ def inverse(A):
     if detA == 0:
         return "Not invertible"
     return (1.0 / detA) * invA
-
-A = matrix([[1,1,1,1],[6,1,1,1],[1,7,1,1],[1,1,1,0]])
-print inverse(A)
