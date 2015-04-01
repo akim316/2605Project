@@ -120,5 +120,5 @@ elif input1 == 3:
     for i in range(mat.shape[0]):
         initEig[i,0] = 1
     iters, maxEig = pm.power_method(mat, tolerance, initEig)
-    #print "Iterations: " + str(iters)
-    #print "Max eigenvalue: " + str(maxEig)
+    print "Iterations: " + str(iters)
+    print "Max eigenvalue: " + str(maxEig)

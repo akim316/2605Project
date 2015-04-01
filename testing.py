@@ -29,4 +29,3 @@ def readingAugmentDAT(filename):
 		matrixList2.append(newList)
 	mat = matrix(matrixList2)
 	return mat, b
-print readingAugmentDAT("b.dat")
