@@ -1,20 +1,19 @@
 from numpy import *
 from math2605 import *
-A = matrix([[1.,0.5,0.333333,0.25],[0.5,0.333333,0.25,0.2],[0.333333,0.25,0.2,0.166667],[0.25,0.2,0.166667,0.142857]], dtype='f')
-B = matrix([[12,-51,4],[6,167,-68], [-4,24,-41]])
+
+# Householder QR factorization method.
 def qr_fact_househ(A, b):
     copyA = copy(A)
     count = 0
     hList = []
     for num in range(copyA.shape[1]):
+        # iterates through the columns of the matrix
         columnList = copyA[:,num].tolist()
         xList = columnList[count:copyA.shape[0]]
         x = array([xList])
         v = array(x) - mag(x)*array([1] + [0]*(x.shape[1] - 1))
         if v.shape[1] != 1:
             uT = v / mag(v)
-            #print "mag v=", mag(v)
-            #print "uT=", uT
             u = uT[0][newaxis, :].T
             #print "u=" , u
             H = eye(v.shape[1]) - 2*matrixMult(u,uT)
