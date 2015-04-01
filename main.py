@@ -5,6 +5,8 @@ import qr_fact_househ as hh
 import qr_fact_givens as g
 import power_method as pm
 import testing as test
+import gauss_seidel as gs
+import jacobi as j
 print "*************************************************************************"
 print "* Welcome to the 2605 Project by Min Je Jung, William Su, and Alex Kim. *"
 print "*************************************************************************"
@@ -89,6 +91,7 @@ elif input1 == 2:
     input12 = int(input("Please choose an option:\n[1] Encoding\n[2] Jacobi & Gauss-Seidal\n[3] Decoding\n"))
     if input12 == 1:
         input121 = int(input("Please enter a length n: "))
+        e.encoding(input121)
 
     if input12 == 2:
         input122 = str(input("Please enter a filename as a string: "))
@@ -98,11 +101,15 @@ elif input1 == 2:
         arraySplit = input124.split(" ")
         for num in range(len(arraySplit)):
             arraySplit[num] = int(arraySplit[num])
-        initialArray = array(arraySplit)
+        initalMatrix = matrix(arraySplit)
+        initialArray = initalMatrix.transpose()
         mat, b = test.readingAugmentDAT(input122)
-        print initialArray
-        print mat
-        print b
+        print "=========GAUSS-SEIDAL=========="
+        gs.gauss(mat, b, initialArray, tolerance)
+
+        print "=========JACOBI=========="
+        j.jacobi(mat, b, initialArray, tolerance)
+
 
     if input12 == 3:
         input125 = input("Please enter a binary stream y as a string! (no spaces or commas) Ex. '010010110': ")
@@ -111,9 +118,10 @@ elif input1 == 2:
             binaryList.append(int(num))
         binaryArrayY = array(binaryList)
         print binaryArrayY
+        print "Sorry, this part of the program is not listed. Please use the code in the directory Decoding.py to grade."
 
 elif input1 == 3:
-    fileInput = str(input("Enter filename with matrix values: "))
+    fileInput = str(input("Enter filename with matrix values as a string: "))
     mat = test.readingMatrixDAT(fileInput)
     tolerance = int(input("Enter the error tolerance: "))
     initEig = zeros((mat.shape[0], 1))

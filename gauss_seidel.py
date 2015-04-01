@@ -47,23 +47,23 @@ def gauss(A, b, x_old, tol):
         print x_k
         print "\n%d iteration(s)" % count
 
-b = matrix([[1],[0],[0],[0],[0],[0],[1],[0],[0],[0],[0],[1],[1],[0],[1],[1],[0]])
+# b = matrix([[1],[0],[0],[0],[0],[0],[1],[0],[0],[0],[0],[1],[1],[0],[1],[1],[0]])
 
-n = b.shape[0]
+# n = b.shape[0]
 
-## creates A0 and A1 matrices and fills them with 0's
-A0 = zeros((n, n))
-A1 = zeros((n, n))
+# ## creates A0 and A1 matrices and fills them with 0's
+# A0 = zeros((n, n))
+# A1 = zeros((n, n))
 
-## fills in A0 matrix
-for i in range(n):
-    A0[i, i] = 1
-    if i - 2 >= 0:
-        A0[i, i - 2] = 1
-        if i - 3 >= 0:
-            A0[i, i - 3] = 1
+# ## fills in A0 matrix
+# for i in range(n):
+#     A0[i, i] = 1
+#     if i - 2 >= 0:
+#         A0[i, i - 2] = 1
+#         if i - 3 >= 0:
+#             A0[i, i - 3] = 1
 
-x_initial = zeros([b.shape[0], 1])
-tol = .000000000000000001
+# x_initial = zeros([b.shape[0], 1])
+# tol = .000000000000000001
 
-x0_gauss = gauss(A0, b, x_initial, tol)
+# x0_gauss = gauss(A0, b, x_initial, tol)

@@ -27,9 +27,9 @@ def jacobi(A, b, x_initial, tol):
             else:
                 L[i, j] = A[i, j]
 
-    print D
-    print U
-    print L
+    print "D =", D
+    print "U =", U
+    print "L =", L
 
     maxE = 1000
     count = 0
@@ -55,23 +55,23 @@ def jacobi(A, b, x_initial, tol):
     print x_k
     print "\n%d iteration(s)" % count
 
-y0 = matrix([[1],[0],[0],[0],[0],[0],[1],[0],[0],[0],[0],[1],[1],[0],[1],[1],[0]])
-n = y0.shape[0]
+# y0 = matrix([[1],[0],[0],[0],[0],[0],[1],[0],[0],[0],[0],[1],[1],[0],[1],[1],[0]])
+# n = y0.shape[0]
 
-## creates A0 and A1 matrices and fills them with 0's
-A0 = zeros((n, n))
-A1 = zeros((n, n))
+# ## creates A0 and A1 matrices and fills them with 0's
+# A0 = zeros((n, n))
+# A1 = zeros((n, n))
 
-## fills in A0 matrix
-for i in range(n):
-    A0[i, i] = 1
-    if i - 2 >= 0:
-        A0[i, i - 2] = 1
-        if i - 3 >= 0:
-            A0[i, i - 3] = 1
+# ## fills in A0 matrix
+# for i in range(n):
+#     A0[i, i] = 1
+#     if i - 2 >= 0:
+#         A0[i, i - 2] = 1
+#         if i - 3 >= 0:
+#             A0[i, i - 3] = 1
 
-x_initial = zeros([y0.shape[0], 1])
-tol = .01
+# x_initial = zeros([y0.shape[0], 1])
+# tol = .01
 
-x1_jacobi = jacobi(A0, y0, x_initial, tol)
+# x1_jacobi = jacobi(A0, y0, x_initial, tol)
 
