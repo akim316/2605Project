@@ -1,9 +1,11 @@
 from numpy import *
 import Determinant as dt
 import Inverse as inv
-import Inverse2 as inv2
-
 import random
+
+print "\n\n********************************************************************"
+print "\n************************** Program Start ***************************\n"
+print "********************************************************************"
 
 ## matrix multiplication modified for binary use
 def matrixMult(A,B): 
@@ -13,7 +15,7 @@ def matrixMult(A,B):
             leftRows = A[x,:]
             rightCols = B[:,y]
             c = dot(leftRows, rightCols)
-            D[x,y] = c % 2 # modified region
+            D[x,y] = abs(c % 2) # modified region
     return D
 
 n = int(raw_input("\nDesired length of x\n")) # takes in the desired length of n
@@ -88,16 +90,20 @@ print y
 
 ##############################################################################################################
 ##
-## jacobi iteration
+## Jacobi Iteration
 ##
 ##############################################################################################################
+
+print "\n\n********************************************************************"
+print "\n************************* Jacobi Iteration *************************\n"
+print "********************************************************************"
 
 ## create D0, U0, and L0 matrices
 D0 = zeros((A0.shape[0], A0.shape[1]))
 L0 = zeros((A0.shape[0], A0.shape[1]))
 U0 = zeros((A0.shape[0], A0.shape[1]))
 
-## fills in D0 matrix
+## fills in matrices
 for i in range(A0.shape[0]):
     for j in range(A0.shape[1]):
         if i == j:
@@ -127,14 +133,14 @@ print "\nx0_k from iteration ="
 print x0j_k
 
 print "x0j_real"
-print matrixMult(inv2.inverse(A0), b0j) 
-"""
+print matrixMult(inv.inverse(A0), b0j)
+
 ## create D1, U1, and L1 matrices
 D1 = zeros((A1.shape[0], A1.shape[1]))
 L1 = zeros((A1.shape[0], A1.shape[1]))
 U1 = zeros((A1.shape[0], A1.shape[1]))
 
-## fills in D0 matrix
+## fills in matrices
 for i in range(A1.shape[0]):
     for j in range(A1.shape[1]):
         if i == j:
@@ -163,34 +169,30 @@ for i in range(n):
 print "\nx1_k from iteration ="
 print x1j_k
 
-print "GG"
-## Gauss Seidol
+print "\nx1j_real"
+print matrixMult(inv.inverse(A1), b1j)
 
+#############################################################################################################
+##
+## Gauss-Seidel Iteration
+##
+#############################################################################################################
+print "\n\n********************************************************************"
+print "\n********************** Gauss-Seidel Iteration **********************\n"
+print "********************************************************************"
 x0g_k = zeros((A0.shape[0], 1))
 b0g = y0
 
 print matrixMult(inv.inverse(L0 + D0), b0g)
 for i in range(n):
     print "\nIteration: %d:" % (i + 1)
-    x0j_k = matrixMult(inv2.inverse(L0 + D0), b0g)
-    ##print x0j_k
-"""
+    x0j_k = matrixMult(inv.inverse(L0 + D0), b0g)
+    print x0j_k
+print "\nx0j_k ="
+print x0j_k
 
-
-
-
-
-
-##############################################################################################################
-##
-## testing x from project description
-##
-##############################################################################################################
-"""
-x0 = matrix([[1],[0],[1],[1],[0],[0],[0],[0]])
-print "\nThis is the test case from the project description"
-print "\ny0 ="
-print matrixMult(A0, x0)
-print "\ny1 ="
-print matrixMult(A1, x0)
-"""
+'''
+x_test = matrix([[1],[0],[1],[1],[0],[0],[0],[0]])
+print matrixMult(A0,x_test)
+print matrixMult(A1,x_test)
+'''
