@@ -51,4 +51,3 @@ def power_method_calculations(A, tol, initVect, initVal, iters):
     ## If it hasn't, then simply return the iterations and the max eigenvalue
     else:
         return iters, find_max(nextVect)
-print power_method(A, tol, initEig)
