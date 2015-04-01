@@ -21,6 +21,7 @@ def readingAugmentDAT(filename):
 	    matrixList.append(aList)
 	mat = matrix(matrixList)
 	b = mat[:,(mat.shape[1]-1)].tolist()
+	b = array(b)
 	for line in matrixList:
 		newList = []
 		for x in range(len(line)-1):
@@ -28,4 +29,3 @@ def readingAugmentDAT(filename):
 		matrixList2.append(newList)
 	mat = matrix(matrixList2)
 	return mat, b
-print readingAugmentDAT("b.dat")

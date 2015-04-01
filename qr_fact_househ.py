@@ -1,23 +1,19 @@
 from numpy import *
 from math2605 import *
-A = matrix([[1.,0.5,0.333333,0.25],[0.5,0.333333,0.25,0.2],[0.333333,0.25,0.2,0.166667],[0.25,0.2,0.166667,0.142857]], dtype='f')
-B = matrix([[12,-51,4],[6,167,-68], [-4,24,-41]])
+
+# Householder QR factorization method.
 def qr_fact_househ(A, b):
     copyA = copy(A)
     count = 0
     hList = []
     for num in range(copyA.shape[1]):
+        # iterates through the columns of the matrix
         columnList = copyA[:,num].tolist()
         xList = columnList[count:copyA.shape[0]]
         x = array([xList])
-        #print "x = ", x
         v = array(x) - mag(x)*array([1] + [0]*(x.shape[1] - 1))
-        #print "v = ", v
-        #print "v shape =", v.shape[1]
         if v.shape[1] != 1:
             uT = v / mag(v)
-            #print "mag v=", mag(v)
-            #print "uT=", uT
             u = uT[0][newaxis, :].T
             #print "u=" , u
             H = eye(v.shape[1]) - 2*matrixMult(u,uT)
@@ -52,28 +48,11 @@ def qr_fact_househ(A, b):
             if abs(errorMatrix[x,y]) > maximum:
                 maximum = abs(errorMatrix[x,y])
     #print "max =", maximum
-    x = solve_qr_b(Q, R, b)
-    hErrorMatrix = matrixMult(A,x) - b
+    x0 = solve_qr_b(Q, R, b)
+    hErrorMatrix = matrixMult(A,x0) - b
     hxerror = 0
     for y in range(hErrorMatrix.shape[0]):
         for x in range(hErrorMatrix.shape[1]):
             if abs(hErrorMatrix[y,x]) > hxerror:
                 hxerror = abs(hErrorMatrix[y,x])
-    return Q, R, maximum, x, hxerror
-# listOfX = []
-# count = 0
-# for num in range(copyA.shape[1]):
-#   columnList = copyA[:,num].tolist()
-#   listOfX.append(columnList[count:copyA.shape[0]])
-#   count += 1
-
-# print listOfX
-
-# vList = []
-# uList = []
-# hList = []
-# for number in range(A.shape[1] - 1):
-#   v = asarray(listOfX[number]) + mag(listOfX[number])*array([1] + [0]*(len(listOfX[number]) - 1))
-#   u = v / mag(v)
-#   H = eye(len(v)) - 2*u*u.T
-#   print H
+    return Q, R, maximum, x0, hxerror

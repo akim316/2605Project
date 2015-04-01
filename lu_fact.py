@@ -50,14 +50,14 @@ def lu_fact(originalA, b):
         for x in range(errorMatrix.shape[1]):
             if abs(errorMatrix[x,y]) > maximum:
                 maximum = abs(errorMatrix[x,y])
-    x = solve_lu_b(L, U, b)
-    hErrorMatrix = matrixMult(originalA,x) - b
+    x0 = solve_lu_b(L, U, b)
+    hErrorMatrix = matrixMult(originalA,x0) - b
     hxerror = 0
     for y in range(hErrorMatrix.shape[0]):
         for x in range(hErrorMatrix.shape[1]):
             if abs(hErrorMatrix[y,x]) > hxerror:
                 hxerror = abs(hErrorMatrix[y,x])
 
-    return L, U, maximum, x, hxerror
+    return L, U, maximum, x0, hxerror
 
 
