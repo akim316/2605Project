@@ -43,11 +43,11 @@ def qr_fact_givens(A, b):
             if abs(errorMatrix[x,y]) > maximum:
                 maximum = abs(errorMatrix[x,y])
     #print "max =", maximum
-    x = solve_qr_b(Q, R, b)
-    hErrorMatrix = matrixMult(A,x) - b
+    x0 = solve_qr_b(Q, R, b)
+    hErrorMatrix = matrixMult(A,x0) - b
     hxerror = 0
     for y in range(hErrorMatrix.shape[0]):
         for x in range(hErrorMatrix.shape[1]):
             if abs(hErrorMatrix[y,x]) > hxerror:
                 hxerror = abs(hErrorMatrix[y,x])
-    return Q, R, maximum, x, hxerror
+    return Q, R, maximum, x0, hxerror
