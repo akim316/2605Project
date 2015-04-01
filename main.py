@@ -85,6 +85,32 @@ if input1 == 1:
         print "Givens x solution =", gx
         print "Givens solution error =", ghxerror
         print "================== END OF MATRIX CALCULATIONS =================="
+elif input1 == 2:
+    input12 = int(input("Please choose an option:\n[1] Encoding\n[2] Jacobi & Gauss-Seidal\n[3] Decoding\n"))
+    if input12 == 1:
+        input121 = int(input("Please enter a length n: "))
+
+    if input12 == 2:
+        input122 = str(input("Please enter a filename as a string: "))
+        input123 = float(input("Please enter an error tolerance: "))
+        tolerance = input123
+        input124 = input("Enter an initial guess array in this format (AS A STRING!): 'x[1] x[2] x[3] x[4] ... x[n]'\n")
+        arraySplit = input124.split(" ")
+        for num in range(len(arraySplit)):
+            arraySplit[num] = int(arraySplit[num])
+        initialArray = array(arraySplit)
+        mat, b = test.readingAugmentDAT(input122)
+        print initialArray
+        print mat
+        print b
+
+    if input12 == 3:
+        input125 = input("Please enter a binary stream y as a string! (no spaces or commas) Ex. '010010110': ")
+        binaryList = []
+        for num in input125:
+            binaryList.append(int(num))
+        binaryArrayY = array(binaryList)
+        print binaryArrayY
 
 elif input1 == 3:
     fileInput = str(input("Enter filename with matrix values: "))
