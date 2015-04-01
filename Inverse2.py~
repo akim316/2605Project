@@ -22,7 +22,6 @@ def inverse(A):
                     #continue
                 A[j,k] -= div * A[i,k]
                 B[j,k] -= div * B[i,k]
-        print A
     return B
                 
             

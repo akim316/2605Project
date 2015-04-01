@@ -1,11 +1,22 @@
 from numpy import *
 
+## matrix multiplication modified for binary use
+def matrixMult(A,B): 
+    D = zeros((A.shape[0], B.shape[1]))
+    for x in range(A.shape[0]):
+        for y in range(B.shape[1]):
+            leftRows = A[x,:]
+            rightCols = B[:,y]
+            c = dot(leftRows, rightCols)
+            D[x,y] = abs(c % 2) # modified region
+    return D
+
 def det(A):
     if A.shape[0] == 1:
         return A[0,0]
     if A.shape[0] == 2:
         return float(A[0,0]) * A[1,1] - float(A[0,1]) * A[1,0]
-    sign = -1.0
+    sign = -1
     total = 0
     for coef in range(A.shape[1]):
         B = zeros((A.shape[0] - 1, A.shape[1] - 1))
@@ -19,7 +30,7 @@ def det(A):
                         i += 1
                     B[i,j] = A[row,col]
                     j += 1
-        sign *= -1.0
+        sign *= -1
         detB = A[0, coef] * det(B)
         total = total + sign * detB
     return total
