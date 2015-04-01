@@ -10,10 +10,7 @@ def qr_fact_househ(A, b):
         columnList = copyA[:,num].tolist()
         xList = columnList[count:copyA.shape[0]]
         x = array([xList])
-        #print "x = ", x
         v = array(x) - mag(x)*array([1] + [0]*(x.shape[1] - 1))
-        #print "v = ", v
-        #print "v shape =", v.shape[1]
         if v.shape[1] != 1:
             uT = v / mag(v)
             #print "mag v=", mag(v)
@@ -60,20 +57,3 @@ def qr_fact_househ(A, b):
             if abs(hErrorMatrix[y,x]) > hxerror:
                 hxerror = abs(hErrorMatrix[y,x])
     return Q, R, maximum, x, hxerror
-# listOfX = []
-# count = 0
-# for num in range(copyA.shape[1]):
-#   columnList = copyA[:,num].tolist()
-#   listOfX.append(columnList[count:copyA.shape[0]])
-#   count += 1
-
-# print listOfX
-
-# vList = []
-# uList = []
-# hList = []
-# for number in range(A.shape[1] - 1):
-#   v = asarray(listOfX[number]) + mag(listOfX[number])*array([1] + [0]*(len(listOfX[number]) - 1))
-#   u = v / mag(v)
-#   H = eye(len(v)) - 2*u*u.T
-#   print H
